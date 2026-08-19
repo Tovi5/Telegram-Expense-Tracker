@@ -2,9 +2,6 @@ import sys
 import logging
 from datetime import datetime
 
-# Category labels contain emoji; Windows terminals often default to a
-# legacy encoding (cp1252) that can't print them, which would otherwise
-# crash logging.StreamHandler the first time a category gets logged.
 sys.stdout.reconfigure(encoding='utf-8')
 sys.stderr.reconfigure(encoding='utf-8')
 
@@ -58,7 +55,7 @@ class BotExceptionHandler(telebot.ExceptionHandler):
 bot.exception_handler = BotExceptionHandler()
 
 
-# ---------------- /add flow ----------------
+
 
 @bot.message_handler(commands=['add'])
 def add_start(message):
@@ -139,7 +136,7 @@ def save_expense(user_id, chat_id, note):
     bot.send_message(chat_id, f"Saved: {amount:.2f} — {category}{note_line}")
 
 
-# ---------------- /history (paginated) ----------------
+
 
 def build_history_page(user_id, page):
     expenses = db.get_expenses(user_id)
@@ -195,7 +192,7 @@ def delete_expense(call):
     bot.edit_message_text(text, chat_id=call.message.chat.id, message_id=call.message.message_id, reply_markup=keyboard)
 
 
-# ---------------- /summary ----------------
+
 
 @bot.message_handler(commands=['summary'])
 def show_summary(message):
@@ -209,7 +206,7 @@ def show_summary(message):
     bot.send_message(message.chat.id, "\n".join(lines))
 
 
-# ---------------- /start, /help, command menu ----------------
+
 
 @bot.message_handler(commands=['start', 'help'])
 def send_help(message):
