@@ -158,9 +158,9 @@ def build_history_page(user_id, page):
     keyboard = InlineKeyboardMarkup(row_width=3)
     nav = []
     if page > 0:
-        nav.append(InlineKeyboardButton("⬅ Prev", callback_data=f"hist:{page - 1}"))
+        nav.append(InlineKeyboardButton("⬅️ Prev", callback_data=f"hist:{page - 1}"))
     if page < total_pages - 1:
-        nav.append(InlineKeyboardButton("Next ➡", callback_data=f"hist:{page + 1}"))
+        nav.append(InlineKeyboardButton("Next ➡️", callback_data=f"hist:{page + 1}"))
     if nav:
         keyboard.row(*nav)
     for row in page_items:
